@@ -19,8 +19,8 @@ class Customer : public User{
 protected:
 	vector<pair <Product, int> > cart;
 public:
-	void placeOrder(int categoryID, int productID);
-	void seeProductsByQuantity();//?
+	void addToCart(int categoryID, int productID, int quantity);
+	void seeCart();
 	void deleteProduct(int productID, int quantity);
 	void clearCart();
 };

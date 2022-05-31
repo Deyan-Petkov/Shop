@@ -14,6 +14,4 @@ public:
 		this->ID = ID;
 	}
 	//friend ostream& operator<<(ostream& ostr, Item& item);
-
-
 };

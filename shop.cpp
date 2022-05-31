@@ -6,7 +6,6 @@ using namespace std;
 
 
 	void Shop::newProduct() {
-
 		cout << "\nEnter Category ID: ";
 		cin >> catID;
 		cout << "\nEnter Product ID: ";
@@ -20,9 +19,15 @@ using namespace std;
 
 		for (Category& c : allCategories) {
 			if (c.getCatID() == catID)
+			{
 				c.getProducts().push_back(newProd);
+				return;
+			}
 		}
+		cout << "No category with this name.";
 	};
+
+
 
 	void Shop::newCategory()
 	{
@@ -36,6 +41,8 @@ using namespace std;
 		Category newCat = Category(catID, catName, description);
 		allCategories.push_back(newCat);
 	}
+
+
 
 
 	vector<Category>& Shop::getCategories(){
