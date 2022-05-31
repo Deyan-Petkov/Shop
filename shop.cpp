@@ -14,8 +14,9 @@ const char DELIM = '|';
 		cout << "\nEnter Product ID: ";
 		cin >> productID;
 		cout << "\nEnter Product Name: ";
-		while (prodName.length() == 0)
-			getline(cin, prodName);
+		prodName = "";
+		cin.ignore(1, '\n');
+		getline(cin, prodName);
 		cout << "\nEnter Price: ";
 		cin >> price;
 		Product newProd = Product(prodName, price, catID, productID);
@@ -39,8 +40,9 @@ const char DELIM = '|';
 		cout << "\nEnter Category Name: ";
 		cin >> catName;
 		cout << "\nEnter Description: ";
-		while (description.length() == 0)
-			getline(cin, description);
+		description = "";
+		cin.ignore(1, '\n');
+		getline(cin, description);
 		Category newCat = Category(catID, catName, description);
 		allCategories.push_back(newCat);
 		writeCategory(catID, catName, description);

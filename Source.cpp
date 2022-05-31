@@ -9,6 +9,7 @@ void customerMenu();
 Shop shop;
 Admin admin = Admin(shop);
 Customer customer;
+string catName = "";
 
 int main() {
 	shop.readCategories();
@@ -19,7 +20,7 @@ int main() {
 		cout << "\nWho are you\n";
 		cout << "\n1 ADMIN";
 		cout << "\n2 CUSTOMER";
-		cout << "\n3 EXIT";
+		cout << "\n3 EXIT\n";
 		cin >> choice;
 
 		switch (choice) {
@@ -30,10 +31,6 @@ int main() {
 		}
 	} while (choice != 3);
 
-	//admin.addCategory();
-	//admin.addProduct();
-	//admin.seeAllProducts();
-
 }
 
 void adminMenu() {
@@ -42,46 +39,68 @@ void adminMenu() {
 		cout << "\n1 Add a new product";
 		cout << "\n2 Add a new category";
 		cout << "\n3 Display products by price range";
-		cout << "\n4 Display categories";
-		cout << "\n5 Exit";
+		cout << "\n4 Display products by category";
+		cout << "\n5 Display complete details";
+		cout << "\n6 Exit\n";
 		cin >> choice;
 
 		switch (choice) {
 		case 1: admin.addProduct(); break;
 		case 2: admin.addCategory(); break;
-		case 3: {
-			double lowerbound, upperbound;
-			cout << "Please enter the Lower price and Upper Price" << endl;
-			cin >> lowerbound;
-			cin >> upperbound;
-			admin.seeProducstByPriceRange(lowerbound, upperbound);
-
-			admin.seeProducstByPriceRange(lowerbound, upperbound); 
+		case 3: 
+			double lowerBound, upperBound;
+			cout << "\nPlease enter the lower price and upper price\n";
+			cin >> lowerBound >> upperBound;
+			admin.seeProducstByPriceRange(lowerBound, upperBound);
 			break;
-		}
-		case 4: admin.seeCategories(); break;
-		case 5: break;
+		case 4: 
+			cout << "\nWhich category?\n";
+			cin >> catName;
+			admin.seeProductsByCatName(catName); break;
+		case 5: admin.seeAllProducts(); break;
+		case 6: break;
 		default: cout << "\n Invalid choice\n";
 		}
-	} while (choice != 5);
+	} while (choice != 6);
 }
 
 void customerMenu() {
 	int choice;
 	do {
-		cout << "\nWho are you\n";
 		cout << "\n1 Add a product";
-		cout << "\n2 CUSTOMER";
-		cout << "\n3 EXIT";
+		cout << "\n2 View basket";
+		cout << "\n3 Remove item from basket";
+		cout << "\n4 Checkout";
+		cout << "\n5 Exit\n";
 		cin >> choice;
 
 		switch (choice) {
-		case 1: adminMenu(); break;
-		case 2: customerMenu(); break;
-		case 3: break;
+		case 1: 
+			cout << "\n1 Display all products";
+			cout << "\n2 Display by category\n";
+			cin >> choice;
+			if (choice == 1) {
+				customer.seeAllProducts();
+			}
+			else if (choice == 2) {
+				cout << "\nWhich category?\n";
+				cin >> catName;
+				customer.seeProductsByCatName(catName);
+			}
+			customer.addToCart();
+			break;
+		case 2: customer.seeCart(); break;
+		case 3: 
+			customer.seeCart();
+			int prodID, quantity;
+			cout << "\nPlease provide productID and quantity of the item you want to remove\n";
+			cin >> prodID >> quantity;
+			customer.deleteProduct(prodID, quantity);
+			break;
+		case 4: break;
 		default: cout << "\n Invalid choice\n";
 		}
-	} while (choice != 3);
+	} while (choice != 5);
 }
 
 //build shopping cart
