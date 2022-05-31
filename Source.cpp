@@ -1,6 +1,7 @@
+#pragma once
 #include "shop.h"
 #include "admin.h"
-#include <fstream>
+#include "customer.h"
 
 void adminMenu();
 void customerMenu();
@@ -10,6 +11,7 @@ Admin admin = Admin(shop);
 Customer customer;
 
 int main() {
+	shop.readCategories();
 
 
 	int choice;
@@ -47,7 +49,16 @@ void adminMenu() {
 		switch (choice) {
 		case 1: admin.addProduct(); break;
 		case 2: admin.addCategory(); break;
-		case 3: admin.seeProducstByPriceRange(); break;
+		case 3: {
+			double lowerbound, upperbound;
+			cout << "Please enter the Lower price and Upper Price" << endl;
+			cin >> lowerbound;
+			cin >> upperbound;
+			admin.seeProducstByPriceRange(lowerbound, upperbound);
+
+			admin.seeProducstByPriceRange(lowerbound, upperbound); 
+			break;
+		}
 		case 4: admin.seeCategories(); break;
 		case 5: break;
 		default: cout << "\n Invalid choice\n";
@@ -56,6 +67,7 @@ void adminMenu() {
 }
 
 void customerMenu() {
+	int choice;
 	do {
 		cout << "\nWho are you\n";
 		cout << "\n1 Add a product";

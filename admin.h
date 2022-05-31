@@ -5,6 +5,7 @@ using namespace std;
 
 class Admin : public User{
 protected:
+	Shop shop;
 public:
 	Admin(Shop& shop);
 	void addProduct();

@@ -5,7 +5,6 @@
 		this->ID = catID;
 		this->name = catName;
 		this->description = description;
-		products = {};
 	}
 
 	/*void Category::categoryDisplay()
