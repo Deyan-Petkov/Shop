@@ -5,7 +5,7 @@ void User::seeProductsByCatName(string catName) {
 	for (Category& c : shop.getCategories()) {
 		if (c.getCatName().compare(catName) == 0) {
 			for (Product& p : c.getProducts()) {
-				p.display();
+				cout << p;
 			}
 		}
 	}
@@ -13,10 +13,10 @@ void User::seeProductsByCatName(string catName) {
 
 void User::seeAllProducts() {
 	for (Category& c : shop.getCategories()) {
-		c.categoryDisplay();
+		cout << c;
 		cout << endl;
 		for (Product& p : c.getProducts()) {
-			p.display();
+			cout << p;
 			cout << endl;
 		}
 	}

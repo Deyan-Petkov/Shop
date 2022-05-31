@@ -6,6 +6,7 @@ int main() {
 	Shop shop;
 	Admin admin = Admin(shop);
 	admin.addCategory();
+	admin.addProduct();
 	admin.seeAllProducts();
 
 }

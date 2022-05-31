@@ -6,15 +6,14 @@ using namespace std;
 
 
 	void Shop::newProduct() {
-		string prodName;
-		double price;
-		int catID, productID;
+
 		cout << "\nEnter Category ID: ";
 		cin >> catID;
 		cout << "\nEnter Product ID: ";
 		cin >> productID;
 		cout << "\nEnter Product Name: ";
-		cin >> prodName;
+		while (prodName.length() == 0)
+			getline(cin, prodName);
 		cout << "\nEnter Price: ";
 		cin >> price;
 		Product newProd = Product(prodName, price, catID, productID);
@@ -27,15 +26,13 @@ using namespace std;
 
 	void Shop::newCategory()
 	{
-		int catID;
-		string catName;
-		string description;
 		cout << "\nEnter Category ID: ";
 		cin >> catID;
 		cout << "\nEnter Category Name: ";
 		cin >> catName;
 		cout << "\nEnter Description: ";
-		cin >> description;
+		while (description.length() == 0)
+			getline(cin, description);
 		Category newCat = Category(catID, catName, description);
 		allCategories.push_back(newCat);
 	}

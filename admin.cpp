@@ -16,13 +16,13 @@ void Admin::seeProducstByPriceRange(double lowerBound, double upperBound) {
 	for (Category& c : shop.getCategories()) {
 		for (Product& p : c.getProducts()) {
 			if (p.getPrice() >= lowerBound && p.getPrice() <= upperBound)
-				p.display();
+				cout << p;
 		}
 	}
 }
 void Admin::seeCategories() {
 	for (Category& c : shop.getCategories()) {
-		c.categoryDisplay();
+		cout << c;
 	}
 }
 
