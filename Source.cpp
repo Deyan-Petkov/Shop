@@ -1,10 +1,12 @@
 #include "shop.h"
 #include "admin.h"
+#include <fstream>
 
 int main() {
 
 	Shop shop;
 	Admin admin = Admin(shop);
+
 	admin.addCategory();
 	admin.addProduct();
 	admin.seeAllProducts();
