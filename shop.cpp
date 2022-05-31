@@ -12,8 +12,8 @@ using namespace std;
 		cin >> productID;
 		cout << "\nEnter Product Name: ";
 		prodName = "";
-		while (prodName.length() == 0)
-			getline(cin, prodName);
+		cin.ignore(1, '\n');
+		getline(cin, prodName);
 		cout << "\nEnter Price: ";
 		cin >> price;
 		Product newProd = Product(prodName, price, catID, productID);
@@ -38,8 +38,8 @@ using namespace std;
 		cin >> catName;
 		cout << "\nEnter Description: ";
 		description = "";
-		while (description.length() == 0)
-			getline(cin, description);
+		cin.ignore(1, '\n');
+		getline(cin, description);
 		Category newCat = Category(catID, catName, description);
 		allCategories.push_back(newCat);
 	}

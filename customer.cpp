@@ -1,10 +1,15 @@
 #include "customer.h"
 
-void Customer::addToCart(int categoryID, int productID, int quantity) {
+void Customer::addToCart() {
+	int categoryID, productID, quantity;
+	cout << "Please provide category ID , product ID and quantity\n";
+	cin >> categoryID >> productID >> quantity;
+
 	for (Category& c : shop.getCategories()) {
 		if (c.getCatID() == categoryID) {
 			for (Product& p : c.getProducts()) {
 				if (p.getProductID() == productID) {
+					cout << "\nItem successfully added!\n";
 					cart.push_back(make_pair(p,quantity));
 					break;
 				}

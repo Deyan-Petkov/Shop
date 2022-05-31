@@ -8,6 +8,7 @@ void customerMenu();
 Shop shop;
 Admin admin = Admin(shop);
 Customer customer;
+string catName = "";
 
 int main() {
 
@@ -31,13 +32,12 @@ int main() {
 
 void adminMenu() {
 	int choice;
-	string catName = "";
 	do {
 		cout << "\n1 Add a new product";
 		cout << "\n2 Add a new category";
 		cout << "\n3 Display products by price range";
 		cout << "\n4 Display products by category";
-		cout << "\n5 Display categories";
+		cout << "\n5 Display complete details";
 		cout << "\n6 Exit\n";
 		cin >> choice;
 
@@ -54,7 +54,7 @@ void adminMenu() {
 			cout << "\nWhich category?\n";
 			cin >> catName;
 			admin.seeProductsByCatName(catName); break;
-		case 5: admin.seeCategories(); break;
+		case 5: admin.seeAllProducts(); break;
 		case 6: break;
 		default: cout << "\n Invalid choice\n";
 		}
@@ -75,6 +75,16 @@ void customerMenu() {
 		case 1: 
 			cout << "\n1 Display all products";
 			cout << "\n2 Display by category\n";
+			cin >> choice;
+			if (choice == 1) {
+				customer.seeAllProducts();
+			}
+			else if (choice == 2) {
+				cout << "\nWhich category?\n";
+				cin >> catName;
+				customer.seeProductsByCatName(catName);
+			}
+			customer.addToCart();
 			break;
 		case 2: customer.seeCart(); break;
 		case 3: 
