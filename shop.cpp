@@ -11,6 +11,7 @@ using namespace std;
 		cout << "\nEnter Product ID: ";
 		cin >> productID;
 		cout << "\nEnter Product Name: ";
+		prodName = "";
 		while (prodName.length() == 0)
 			getline(cin, prodName);
 		cout << "\nEnter Price: ";
@@ -36,6 +37,7 @@ using namespace std;
 		cout << "\nEnter Category Name: ";
 		cin >> catName;
 		cout << "\nEnter Description: ";
+		description = "";
 		while (description.length() == 0)
 			getline(cin, description);
 		Category newCat = Category(catID, catName, description);
