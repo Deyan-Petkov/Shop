@@ -8,6 +8,7 @@ const string PRODUCTS = "products.txt";
 const char DELIM = '|';
 
 
+
 	void Shop::newProduct() {
 		cout << "\nEnter Category ID: ";
 		cin >> catID;
@@ -19,12 +20,15 @@ const char DELIM = '|';
 		getline(cin, prodName);
 		cout << "\nEnter Price: ";
 		cin >> price;
-		Product newProd = Product(prodName, price, catID, productID);
 
 		for (Category& c : allCategories) {
 			if (c.getCatID() == catID)
 			{
-				c.getProducts().push_back(newProd);
+				//Product newProd = Product(prodName, price, catID, productID);
+				//c.getProducts().push_back(newProd);
+				writeProduct(catID, productID, prodName, price);
+				c.getProducts().clear();
+				readProducts();
 				return;
 			}
 		}
@@ -43,9 +47,16 @@ const char DELIM = '|';
 		description = "";
 		cin.ignore(1, '\n');
 		getline(cin, description);
-		Category newCat = Category(catID, catName, description);
-		allCategories.push_back(newCat);
+		for (Category& c : allCategories) 
+			if (c.getCatID() == catID){
+				cout << "\nCategory with this ID already exists\n";
+				return;
+			}
+	/*	Category newCat = Category(catID, catName, description);
+		allCategories.push_back(newCat);*/
 		writeCategory(catID, catName, description);
+		allCategories.clear();
+		readCategories();
 	}
 
 
@@ -77,6 +88,17 @@ const char DELIM = '|';
 		categoryStream.close();
 	}
 
+	void Shop::writeProduct(int catID, int productID, string prodName, double price)
+	{
+		fstream productStream(PRODUCTS, fstream::app);
+		productStream << catID << DELIM;
+		productStream << productID << DELIM;
+		productStream << prodName << DELIM;
+		productStream << price << DELIM;
+		productStream << "\n";
+		productStream.close();
+	}
+
 	Category Shop::readCategory(string line) {
 		stringstream lineStream(line);
 		int catID; string catName; string description; char buffer;
@@ -84,6 +106,17 @@ const char DELIM = '|';
 		getline(lineStream, catName, DELIM);
 		getline(lineStream, description, DELIM);
 		return Category(catID, catName, description);
+	}
+
+	Product Shop::readProduct(string line)
+	{
+		stringstream linestream(line);
+		int catID, productID;  string prodName; double price; char buffer;
+		linestream >> catID >> buffer;
+		linestream >> productID >> buffer;
+		getline(linestream, prodName, DELIM);
+		linestream >> price >> buffer;
+		return Product(prodName,price,catID,productID);
 	}
 
 	void Shop::readCategories() {
@@ -94,3 +127,22 @@ const char DELIM = '|';
 		}
 		categoryStream.close();
 	}
+
+	void Shop::readProducts() 
+	{
+		fstream productStream(PRODUCTS);
+		string line;
+		while (getline(productStream, line)) {
+			Product product = readProduct(line);
+			for (Category& c : allCategories) {
+				if (c.getCatID() == product.getCatId()){
+					c.getProducts().push_back(product);
+				}
+			}
+		}
+		productStream.close();
+	}
+
+
+	
+

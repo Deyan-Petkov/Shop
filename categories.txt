@@ -1,1 +1,6 @@
 1|shampoo|Hair Products|
+2|Toys|Children's toys
+3|Furniture|Furnishing for home
+4|Laptops|Small computers
+5|Vegetables|Vegetables grow underground
+6|drinks|Soft Drinks|

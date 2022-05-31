@@ -8,11 +8,13 @@ void customerMenu();
 
 Shop shop;
 Admin admin = Admin(shop);
-Customer customer;
+Customer customer = Customer(shop);
 string catName = "";
 
 int main() {
 	shop.readCategories();
+	shop.readProducts();
+	//cout << "cat size: " << shop.getCategories().size() << endl;
 
 
 	int choice;
@@ -40,8 +42,9 @@ void adminMenu() {
 		cout << "\n2 Add a new category";
 		cout << "\n3 Display products by price range";
 		cout << "\n4 Display products by category";
-		cout << "\n5 Display complete details";
-		cout << "\n6 Exit\n";
+		cout << "\n5 Display categories";
+		cout << "\n6 Display complete details";
+		cout << "\n7 Exit\n";
 		cin >> choice;
 
 		switch (choice) {
@@ -57,8 +60,8 @@ void adminMenu() {
 			cout << "\nWhich category?\n";
 			cin >> catName;
 			admin.seeProductsByCatName(catName); break;
-		case 5: admin.seeAllProducts(); break;
-		case 6: break;
+		case 5: cout << "TO BE IMPLEMENTED" << endl; break;
+		case 6: admin.seeAllProducts(); break;
 		default: cout << "\n Invalid choice\n";
 		}
 	} while (choice != 6);

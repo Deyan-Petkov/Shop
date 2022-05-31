@@ -23,6 +23,9 @@ public:
 	void writeCategory(int catID, string catName, string description);
 	Category readCategory(string line);
 	void readCategories();
+	void writeProduct(int catID, int productID, string prodName, double price);
+	Product readProduct(string line);
+	void readProducts();
 
 	//void initShop();
 

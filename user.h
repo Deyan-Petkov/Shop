@@ -7,8 +7,9 @@ using namespace std;
 
 class User {
 protected:
-	Shop shop;
+	Shop* shop;
 public:
+	User(Shop& shop);
 	void seeProductsByCatName(string catName);
 	void seeAllProducts();
 

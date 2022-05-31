@@ -1,11 +1,16 @@
 #include "customer.h"
 
+
+Customer::Customer(Shop& shop) :User(shop) {
+	this->shop = &shop;
+}
+
 void Customer::addToCart() {
 	int categoryID, productID, quantity;
 	cout << "Please provide category ID , product ID and quantity\n";
 	cin >> categoryID >> productID >> quantity;
 
-	for (Category& c : shop.getCategories()) {
+	for (Category& c : (*shop).getCategories()) {
 		if (c.getCatID() == categoryID) {
 			for (Product& p : c.getProducts()) {
 				if (p.getProductID() == productID) {

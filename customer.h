@@ -18,7 +18,9 @@ using namespace std;
 class Customer : public User{
 protected:
 	vector<pair <Product, int> > cart;
+	Shop* shop;
 public:
+	Customer(Shop& shop);
 	void addToCart();
 	void seeCart();
 	void deleteProduct(int productID, int quantity);
