@@ -12,7 +12,7 @@
 	}*/
 	ostream& operator<<(ostream& ostr, Product& product) {
 		ostr << "Category ID: " 
-			<< product.catID << "\tProduct ID: " << product.ID << "\tName: " << product.name << "\tPrice: " << product.price << endl;
+			<< product.catID << "\tProduct ID: " << product.ID << "\tName: " << product.name << "  Price: " << product.price << endl;
 		return ostr;
 	}
 

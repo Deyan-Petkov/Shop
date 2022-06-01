@@ -26,6 +26,7 @@ public:
 	void writeProduct(int catID, int productID, string prodName, double price);
 	Product readProduct(string line);
 	void readProducts();
+	void seeProductsByCatName(int catID);
 
 	//void initShop();
 

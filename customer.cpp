@@ -15,6 +15,12 @@ void Customer::addToCart() {
 			for (Product& p : c.getProducts()) {
 				if (p.getProductID() == productID) {
 					cout << "\nItem successfully added!\n";
+					for (auto& pair : cart) {
+						if (pair.first.getCatId() == categoryID && pair.first.getProductID() == productID) {
+							pair.second+=quantity;
+							return;
+						}
+					}
 					cart.push_back(make_pair(p,quantity));
 					break;
 				}
@@ -35,16 +41,16 @@ void Customer::seeCart() {
 }
 
 
-void Customer::deleteProduct(int productID, int quantity) {
+void Customer::deleteProduct(int catID, int productID, int quantity) {
 	for (int i = 0; i < cart.size(); i++) {
-		if (cart.at(i).first.getProductID() == productID) {
+		if (cart.at(i).first.getProductID() == productID && cart.at(i).first.getCatId() == catID) {
 			if (cart.at(i).second > quantity) {
 				cart.at(i).second -= quantity;
 				cout <<"\n"<<quantity << cart.at(i).first.getProductName() << " removed";
 			}
 			else {
-				cart.erase(cart.begin()+i);
 				cout << "\nAll " << cart.at(i).first.getProductName() << " removed";
+				cart.erase(cart.begin()+i);
 			}
 		}
 	}

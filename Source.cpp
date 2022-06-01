@@ -47,8 +47,13 @@ void adminMenu() {
 		cin >> choice;
 
 		switch (choice) {
-		case 1: admin.addProduct(); break;
-		case 2: admin.addCategory(); break;
+		case 1: {
+			admin.seeCategoryNames();
+			cout << endl;
+			admin.addProduct(); 
+			break;	
+		}
+		case 2: admin.seeCategoryNames(); admin.addCategory(); break;
 		case 3: 
 			double lowerBound, upperBound;
 			cout << "\nPlease enter the lower price and upper price\n";
@@ -99,10 +104,10 @@ void customerMenu() {
 		case 2: customer.seeCart(); break;
 		case 3: 
 			customer.seeCart();
-			int prodID, quantity;
-			cout << "\nPlease provide productID and quantity of the item you want to remove\n";
-			cin >> prodID >> quantity;
-			customer.deleteProduct(prodID, quantity);
+			int catID, prodID, quantity;
+			cout << "\nPlease provide category ID, product ID and quantity of the item you want to remove\n";
+			cin >> catID >> prodID >> quantity;
+			customer.deleteProduct(catID, prodID, quantity);
 			break;
 		case 4: {
 			char userInput{};
@@ -111,7 +116,7 @@ void customerMenu() {
 			if(userInput == 'y')
 				customer.clearCart();
 		}
-		case 5: break;
+		case 5: customer.clearCart(); cout << "\nThank you for your purchase!\n"; break;
 		default: cout << "\n Invalid choice\n";
 		}
 	} while (choice != 6);

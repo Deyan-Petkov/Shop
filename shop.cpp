@@ -1,5 +1,6 @@
 #pragma once
 #include "shop.h"
+#include "admin.h"
 
 
 using namespace std;
@@ -12,6 +13,7 @@ const char DELIM = '|';
 	void Shop::newProduct() {
 		cout << "\nEnter Category ID: ";
 		cin >> catID;
+		seeProductsByCatName(catID);
 		cout << "\nEnter Product ID: ";
 		cin >> productID;
 		cout << "\nEnter Product Name: ";
@@ -24,11 +26,19 @@ const char DELIM = '|';
 		for (Category& c : allCategories) {
 			if (c.getCatID() == catID)
 			{
-				//Product newProd = Product(prodName, price, catID, productID);
-				//c.getProducts().push_back(newProd);
+				for (Product& p : c.getProducts()) {
+					if (p.getProductID() == productID) {
+						cout << "\nWe already have a product with this ID";
+						return;
+					}
+				}
+				Product newProd = Product(prodName, price, catID, productID);
+				c.getProducts().push_back(newProd);
 				writeProduct(catID, productID, prodName, price);
-				c.getProducts().clear();
-				readProducts();
+				//for (Category& c : allCategories) {
+				//	c.getProducts().clear();
+				//}
+				//readProducts();
 				return;
 			}
 		}
@@ -52,11 +62,12 @@ const char DELIM = '|';
 				cout << "\nCategory with this ID already exists\n";
 				return;
 			}
-	/*	Category newCat = Category(catID, catName, description);
-		allCategories.push_back(newCat);*/
+		Category newCat = Category(catID, catName, description);
+		allCategories.push_back(newCat);
 		writeCategory(catID, catName, description);
-		allCategories.clear();
-		readCategories();
+		//allCategories.clear();
+		//readCategories();
+		//readProducts();
 	}
 
 
@@ -66,6 +77,16 @@ const char DELIM = '|';
 		return allCategories;
 	}
 
+
+	void Shop::seeProductsByCatName(int catID) {
+		for (Category& c : allCategories) {
+			if (c.getCatID() == catID) {
+				for (Product& p : c.getProducts()) {
+					cout << p;
+				}
+			}
+		}
+	}
 
 
 	void Shop::writeCategory(int catID, string catName, string description) {

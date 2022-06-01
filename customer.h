@@ -23,6 +23,6 @@ public:
 	Customer(Shop& shop);
 	void addToCart();
 	void seeCart();
-	void deleteProduct(int productID, int quantity);
+	void deleteProduct(int catID, int productID, int quantity);
 	void clearCart();
 };
