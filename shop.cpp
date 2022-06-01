@@ -66,17 +66,6 @@ const char DELIM = '|';
 		return allCategories;
 	}
 
-	//void Shop::initShop() {
-	//	fstream shop_items;
-	//	shop_items.open(CATEGORIES);
-	//	if (shop_items.is_open()) {
-	//		string line;
-	//		while (getline(shop_items, line)) {
-
-	//		}
-	//	}
-
-	//}
 
 
 	void Shop::writeCategory(int catID, string catName, string description) {

@@ -10,7 +10,8 @@ protected:
 	Shop* shop;
 public:
 	User(Shop& shop);
-	void seeProductsByCatName(string catName);
+	void seeProductsByCatName(int catID);
 	void seeAllProducts();
+	void seeCategoryNames();
 
 };

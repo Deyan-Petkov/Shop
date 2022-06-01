@@ -7,7 +7,7 @@ Customer::Customer(Shop& shop) :User(shop) {
 
 void Customer::addToCart() {
 	int categoryID, productID, quantity;
-	cout << "Please provide category ID , product ID and quantity\n";
+	cout << "\nPlease provide category ID , product ID and quantity\n";
 	cin >> categoryID >> productID >> quantity;
 
 	for (Category& c : (*shop).getCategories()) {
@@ -26,7 +26,7 @@ void Customer::addToCart() {
 
 void Customer::seeCart() {
 	double totalPrice = 0;
-
+	cout << endl;
 	for (pair<Product, int> c : cart) {
 		cout << c.first << "\tQuantity: " << c.second << "\n";
 		totalPrice += (c.first.getPrice() * c.second);
@@ -40,9 +40,11 @@ void Customer::deleteProduct(int productID, int quantity) {
 		if (cart.at(i).first.getProductID() == productID) {
 			if (cart.at(i).second > quantity) {
 				cart.at(i).second -= quantity;
+				cout <<"\n"<<quantity << cart.at(i).first.getProductName() << " removed";
 			}
 			else {
 				cart.erase(cart.begin()+i);
+				cout << "\nAll " << cart.at(i).first.getProductName() << " removed";
 			}
 		}
 	}

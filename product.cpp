@@ -11,8 +11,8 @@
 		cout << "Name: " << name << " Price: " << price << " Category ID: " << catID << "Product ID: " << ID << endl;
 	}*/
 	ostream& operator<<(ostream& ostr, Product& product) {
-		ostr << "Name: " << product.name << "\tPrice: " << product.price << "\tCategory ID: " 
-			<< product.catID << "\tProduct ID: " << product.ID << endl;
+		ostr << "Category ID: " 
+			<< product.catID << "\tProduct ID: " << product.ID << "\tName: " << product.name << "\tPrice: " << product.price << endl;
 		return ostr;
 	}
 

@@ -42,9 +42,8 @@ void adminMenu() {
 		cout << "\n2 Add a new category";
 		cout << "\n3 Display products by price range";
 		cout << "\n4 Display products by category";
-		cout << "\n5 Display categories";
-		cout << "\n6 Display complete details";
-		cout << "\n7 Exit\n";
+		cout << "\n5 Display complete details";
+		cout << "\n6 Exit\n";
 		cin >> choice;
 
 		switch (choice) {
@@ -58,10 +57,12 @@ void adminMenu() {
 			break;
 		case 4: 
 			cout << "\nWhich category?\n";
-			cin >> catName;
-			admin.seeProductsByCatName(catName); break;
-		case 5: cout << "TO BE IMPLEMENTED" << endl; break;
-		case 6: admin.seeAllProducts(); break;
+			admin.seeCategoryNames();
+			cout << endl;
+			cin >> choice;
+			admin.seeProductsByCatName(choice); break;
+		case 5: admin.seeAllProducts(); break;
+		case 6:break;
 		default: cout << "\n Invalid choice\n";
 		}
 	} while (choice != 6);
@@ -73,8 +74,9 @@ void customerMenu() {
 		cout << "\n1 Add a product";
 		cout << "\n2 View basket";
 		cout << "\n3 Remove item from basket";
-		cout << "\n4 Checkout";
-		cout << "\n5 Exit\n";
+		cout << "\n4 Remove all items from basket";
+		cout << "\n5 Checkout";
+		cout << "\n6 Exit\n";
 		cin >> choice;
 
 		switch (choice) {
@@ -87,8 +89,10 @@ void customerMenu() {
 			}
 			else if (choice == 2) {
 				cout << "\nWhich category?\n";
-				cin >> catName;
-				customer.seeProductsByCatName(catName);
+				customer.seeCategoryNames();
+				//cout << endl;
+				cin >> choice;
+				customer.seeProductsByCatName(choice);
 			}
 			customer.addToCart();
 			break;
@@ -100,10 +104,17 @@ void customerMenu() {
 			cin >> prodID >> quantity;
 			customer.deleteProduct(prodID, quantity);
 			break;
-		case 4: break;
+		case 4: {
+			char userInput{};
+			cout << "\nAre you sure you want to remove all items from you basket?\ntype: (y/n)\n";
+			cin >> userInput;
+			if(userInput == 'y')
+				customer.clearCart();
+		}
+		case 5: break;
 		default: cout << "\n Invalid choice\n";
 		}
-	} while (choice != 5);
+	} while (choice != 6);
 }
 
 //build shopping cart
